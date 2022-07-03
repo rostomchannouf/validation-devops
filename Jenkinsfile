@@ -2,7 +2,7 @@ pipeline {
         agent any
 environment {
 
-    registry = "raouagara/devopstimesheet"
+    registry = "rostomchannouf/validation-devops"
     registryCredential = 'dockerHub'
     nexusCredential = 'nexus_cred'
     dockerImage = ''
@@ -15,7 +15,7 @@ environment {
                         stage ('Checkout') {
                                     steps {
                                          echo "Getting Project from Git";
-                                         git "https://github.com/raoua97/DevOps_Timesheet.git"
+                                         git "https://github.com/rostomchannouf/validation-devops"
             }
         }
         stage ('MVN CLEAN') {
