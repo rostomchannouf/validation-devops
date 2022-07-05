@@ -23,7 +23,9 @@
 		<sonar.password>admin</sonar.password>
  		<sonar.language>java</sonar.language>
   		<sonar.scm.provider>git</sonar.scm.provider>
+		<sonar.qualitygate.wait>true</sonar.qualitygate.wait>
 	</properties>
+
 
 	<distributionManagement>
         <repository>
@@ -76,15 +78,6 @@
           		<artifactId>sonar-maven-plugin</artifactId>
           		<version>3.7.0.1746</version>
         	</plugin>
-			<plugin>
-            	<groupId>org.apache.maven.plugins</groupId>
-            	<artifactId>maven-compiler-plugin</artifactId>
-            	<version>3.6.1</version>
-            	<configuration>
-                	<source>1.8</source>
-                	<target>1.8</target>
-            </configuration>
-        </plugin>
 		</plugins>
 	</build>
 
