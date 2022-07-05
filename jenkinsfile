@@ -80,7 +80,7 @@ environment {
                       // TODO: If the last commit is already tagged, nothing to do
                          steps{
                                         script{
-                                withDockerRegistry(credentialsId: 'nexus_cred', url: 'http://192.168.1.130:10082/repository/hub-dev/') {
+                                withDockerRegistry(credentialsId: 'nexus_cred', url: 'http://192.168.0.10:8081/repository/hub-dev/') {
         
                                  dockerImage.push ()
         }
