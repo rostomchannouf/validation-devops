@@ -18,7 +18,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-		<sonar.host.url>http://localhost:9000/</sonar.host.url>
+		<sonar.host.url>http://localhost:9090/</sonar.host.url>
   		<sonar.login>admin</sonar.login>
  		<sonar.language>java</sonar.language>
   		<sonar.scm.provider>git</sonar.scm.provider>
