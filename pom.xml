@@ -27,7 +27,7 @@
 
 	<distributionManagement>
         <repository>
-            <id>nexus-site</id>
+            <id>nexus_cred</id>
             <url>http://localhost:8081/</url>
         </repository>
     </distributionManagement>
