@@ -25,6 +25,12 @@
   		<sonar.scm.provider>git</sonar.scm.provider>
 	</properties>
 
+	<distributionManagement>
+        <repository>
+            <id>nexus-site</id>
+            <url>http://localhost:8081/</url>
+        </repository>
+    </distributionManagement>
 
 	<dependencies>
 		<dependency>
