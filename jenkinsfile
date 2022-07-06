@@ -15,7 +15,7 @@ environment {
                         stage ('Checkout') {
                                     steps {
                                          echo "Getting Project from Git";
-                                         git "https://github.com/rostomchannouf/validation-devops.git"
+                                         git "https://github.com/rostomchannouf/validation-devops.git" , branch "master"
             }
         }
         stage ('MVN CLEAN') {
