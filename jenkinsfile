@@ -9,7 +9,7 @@ environment {
 
 }
         tools {
-            default MAVEN "maven"
+            default MAVEN
         }
         stages{
                         stage ('Checkout') {
