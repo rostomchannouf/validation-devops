@@ -20,10 +20,19 @@
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 		<sonar.host.url>http://localhost:9000/</sonar.host.url>
   		<sonar.login>admin</sonar.login>
+		<sonar.password>admin</sonar.password>
  		<sonar.language>java</sonar.language>
   		<sonar.scm.provider>git</sonar.scm.provider>
+		<sonar.qualitygate.wait>true</sonar.qualitygate.wait>
 	</properties>
 
+
+	<distributionManagement>
+        <repository>
+            <id>nexus_cred</id>
+            <url>http://localhost:8081/</url>
+        </repository>
+    </distributionManagement>
 
 	<dependencies>
 		<dependency>

@@ -1,0 +1,94 @@
+pipeline {
+        agent any
+environment {
+
+    registry = "rostomchannouf/validation-devops"
+    registryCredential = 'dockerHub'
+    nexusCredential = 'nexus_cred'
+    dockerImage = ''
+
+}
+        tools {
+            maven "default MAVEN"
+        }
+        stages{
+                        stage ('Checkout') {
+                                    steps {
+                                         echo "Getting Project from Git";
+                                         git "https://github.com/rostomchannouf/validation-devops.git"
+            }
+        }
+        stage ('MVN CLEAN') {
+            steps {
+                echo "Maven Clean";
+                bat 'mvn clean';
+            }
+        }
+        stage ('MVN TEST') {
+            steps {
+                echo "Maven Test JUnit";
+                bat 'mvn test';
+            }
+        }
+                        stage('Sonar Analyse'){
+                                steps{
+                    bat "mvn sonar:sonar"
+                  }
+            }
+
+        stage ('MVN PACKAGE') {
+            steps {
+
+                bat 'mvn package';
+            }
+        }
+                stage ('MVN INSTALL') {
+            steps {
+
+                bat 'mvn install';
+            }
+        }
+            stage('Nexus Deploy'){
+                                steps{
+                                        bat "mvn deploy"
+                                }
+                        }
+
+                        stage('Building Image'){
+                                steps{
+                                        script{
+                                                dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                                        }
+                                }
+                        }
+
+                        stage('Deploy Image'){
+                                steps{
+                                        script{
+                                                docker.withRegistry( '', registryCredential )
+                        {dockerImage.push()}
+                                        }
+                           
+                               }
+                        post {
+                           always {
+                           emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+        }
+    }       
+                        }
+                    stage('publish docker to nexus') {
+                      // TODO: If the last commit is already tagged, nothing to do
+                         steps{
+                                        script{
+                                withDockerRegistry(credentialsId: 'nexus_cred', url: 'http://192.168.0.10:8081/repository/hub-dev/') {
+        
+                                 dockerImage.push ()
+        }
+    }                      
+        }
+  }
+        
+                        
+                        
+                                                 }
+                        }
