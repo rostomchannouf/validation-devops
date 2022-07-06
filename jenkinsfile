@@ -68,27 +68,27 @@ environment {
                                                 docker.withRegistry( '', registryCredential )
                         {dockerImage.push()}
                                         }
-                           
+
                                }
                         post {
                            always {
                            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
         }
-    }       
+    }
                         }
                     stage('publish docker to nexus') {
                       // TODO: If the last commit is already tagged, nothing to do
                          steps{
                                         script{
                                 withDockerRegistry(credentialsId: 'nexus_cred', url: 'http://192.168.0.10:8081/repository/hub-dev/') {
-        
+
                                  dockerImage.push ()
         }
-    }                      
+    }
         }
   }
-        
-                        
-                        
+
+
+
                                                  }
                         }
