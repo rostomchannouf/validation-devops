@@ -48,11 +48,6 @@ environment {
                 bat 'mvn install';
             }
         }
-            stage('Nexus Deploy'){
-                                steps{
-                                        bat "mvn deploy"
-                                }
-                        }
 
                         stage('Building Image'){
                                 steps{
