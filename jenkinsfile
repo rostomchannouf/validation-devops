@@ -65,11 +65,7 @@ environment {
                                         }
                            
                                }
-                        post {
-                           always {
-                           emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
-        }
-    }       
+                            
                         }
                     stage('publish docker to nexus') {
                       // TODO: If the last commit is already tagged, nothing to do
