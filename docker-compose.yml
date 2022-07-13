@@ -1,0 +1,27 @@
+version: '1'
+
+services:
+ nexus:
+  image: sonatype/nexus
+  container_name: nexus
+  ports:
+    - "8081:8081"
+  volumes:
+    - "/opt/nexus/:/var/lib/nexus"
+
+ jenkins:
+  image: jenkins
+  container_name: jenkins
+  ports:
+    - "8080:8080"
+  volumes:
+    - "$PWD/jenkins:/var/jenkins_home"
+ 
+ sonarqube:
+  image: sonarqube:3.7.0.1746
+  container_name: sonarqube
+  restart: always
+  ports:
+   - "9000:9000"
+  volumes:
+    - "/opt/sonar/:/var/lib/sonar"
